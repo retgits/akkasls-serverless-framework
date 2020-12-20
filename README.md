@@ -10,6 +10,14 @@
 
 The Akka Serverless Plugin for Serverless Framework may need to invoke the following command line tools, depending on which features you use. You will need `akkasls` at minimum, and `docker` if you plan to use the extension to build applications.
 
+To use this plugin, you'll have to install it first:
+
+```bash
+npm install --save-dev @retgits/akkasls-serverless-framework
+```
+
+After that, you can add `@retgits/akkasls-serverless-framework` to your plugins (see the below template as an example).
+
 ## Template
 
 ```yaml
@@ -49,7 +57,7 @@ functions:
     proxyHostPort: 9001
 
 plugins:
-  - @retgits/akkasls-serverless-framework
+  - '@retgits/akkasls-serverless-framework'
 ```
 
 ## Commands
