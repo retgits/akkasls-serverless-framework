@@ -154,20 +154,20 @@ serverless local stop -f warehouse
 
 ### Create
 
-Creates a new service in the current working directory based on the provided template.
+Creates a new service in the current working directory based on the provided template.  Check out [akkasls-templates](https://github.com/retgits/akkasls-templates) for available templates.
 
 #### Usage
 
 Create service in current working directory:
 
 ```bash
-serverless create --template-url https://github.com/retgits/akkasls-templates/tree/main/nodejs/helloworld-sls
+serverless create --template-url https://github.com/retgits/akkasls-templates/tree/main/nodejs/helloworld
 ```
 
 Create service in new folder using a custom template:
 
 ```bash
-serverless create --template-url https://github.com/retgits/akkasls-templates/tree/main/nodejs/helloworld-sls --path myService
+serverless create --template-url https://github.com/retgits/akkasls-templates/tree/main/nodejs/helloworld --path myService
 ```
 
 #### Options
@@ -178,18 +178,18 @@ serverless create --template-url https://github.com/retgits/akkasls-templates/tr
 
 ### Install
 
-Installs a service from a GitHub URL in the current working directory.
+Installs a service from a GitHub URL in the current working directory. Check out [akkasls-templates](https://github.com/retgits/akkasls-templates) for available templates.
 
 #### Usage
 
 ```bash
-serverless install --url https://github.com/retgits/akkasls-templates/tree/main/nodejs/helloworld-sls
+serverless install --url https://github.com/retgits/akkasls-templates/tree/main/nodejs/helloworld
 ```
 
 Installing a service from a GitHub URL
 
 ```bash
-serverless install --url https://github.com/retgits/akkasls-templates/tree/main/nodejs/helloworld-sls
+serverless install --url https://github.com/retgits/akkasls-templates/tree/main/nodejs/helloworld
 ```
 
 This example will download the .zip file of the `helloworld-sls` service from GitHub, create a new directory with the name `helloworld-sls` in the current working directory and unzips the files in this directory.
@@ -197,7 +197,7 @@ This example will download the .zip file of the `helloworld-sls` service from Gi
 Installing a service from a GitHub URL with a new service name
 
 ```bash
-serverless install --url https://github.com/retgits/akkasls-templates/tree/main/nodejs/helloworld-sls --name my-helloworld
+serverless install --url https://github.com/retgits/akkasls-templates/tree/main/nodejs/helloworld --name my-helloworld
 ```
 
 This example will download the .zip file of the `helloworld-sls` service from GitHub, create a new directory with the name `my-helloworld` in the current working directory and unzips the files in this directory and renames the service to `my-helloworld` if `serverless.yml` exists in the service root.
