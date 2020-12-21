@@ -53,14 +53,14 @@ export class ASRemovePlugin extends BasePlugin {
         const creds = credentials.response as Credential[];
 
         svcs.forEach(async (svc) => {
-            const res = await undeployService(svc.metadata.name, project, {dryrun: dryrun, silent: true, configFile: this._provider.config, context: this._provider.context});
+            const res = await undeployService(svc.metadata.name, project, {dryrun: dryrun, silent: this._provider.quiet, configFile: this._provider.config, context: this._provider.context});
             this.log(res.stdout);
         });
 
         creds.forEach(async (cred) => {
             const name = cred.name.split('/').pop();
             // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            const res = await deleteDockerCredentials(project, name!, {dryrun: dryrun, silent: true, configFile: this._provider.config, context: this._provider.context});
+            const res = await deleteDockerCredentials(project, name!, {dryrun: dryrun, silent: this._provider.quiet, configFile: this._provider.config, context: this._provider.context});
             this.log(res.stdout);
         });
     }

@@ -82,7 +82,7 @@ export class ASDeployPlugin extends BasePlugin {
         const mustUndeploy = asServices.filter(svc => !slsServices.includes(svc));
 
         mustUndeploy.forEach(async (svc) => {
-            const res = await undeployService(svc.metadata.name, project, {dryrun: this._dryrun, silent: true, configFile: this._provider.config, context: this._provider.context});
+            const res = await undeployService(svc.metadata.name, project, {dryrun: this._dryrun, silent: this._provider.quiet, configFile: this._provider.config, context: this._provider.context});
             this.log(res.stdout);
         });
 
@@ -123,12 +123,12 @@ export class ASDeployPlugin extends BasePlugin {
         mustRemove.forEach(async (cred) => {
             const name = cred.name.split('/').pop();
             // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            const res = await deleteDockerCredentials(project, name!, {dryrun: this._dryrun, silent: true, configFile: this._provider.config, context: this._provider.context});
+            const res = await deleteDockerCredentials(project, name!, {dryrun: this._dryrun, silent: this._provider.quiet, configFile: this._provider.config, context: this._provider.context});
             this.log(res.stdout);
         });
 
         mustDeploy.forEach(async (cred) => {
-            const res = await addDockerCredentials(project, this._credToString(cred), {dryrun: this._dryrun, silent: true, configFile: this._provider.config, context: this._provider.context});
+            const res = await addDockerCredentials(project, this._credToString(cred), {dryrun: this._dryrun, silent: this._provider.quiet, configFile: this._provider.config, context: this._provider.context});
             this.log(res.stdout);
         });
     }
@@ -144,7 +144,7 @@ export class ASDeployPlugin extends BasePlugin {
             this.warn(`${f.name} does not have a tag. Adding ${tag} for now, but this might cause issues...`);
         }
 
-        const res = await deployService(f.name, `${this.serverless.service.provider.docker.imageUser}/${f.name}:${tag}`, project, {dryrun: this._dryrun, silent: false, configFile: this._provider.config, context: this._provider.context});
+        const res = await deployService(f.name, `${this.serverless.service.provider.docker.imageUser}/${f.name}:${tag}`, project, {dryrun: this._dryrun, silent: this._provider.quiet, configFile: this._provider.config, context: this._provider.context});
         this.log(res.stdout);
     }
 
