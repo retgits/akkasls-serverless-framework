@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.2](https://github.com/retgits/akkasls-serverless-framework/compare/v0.1.1...v0.1.2) (2021-01-09)
+
+
+### Bug Fixes
+
+* add .versionrc ([adbeb08](https://github.com/retgits/akkasls-serverless-framework/commit/adbeb088b1695ab6910ae831cad07666cfe665f7))
+* update dependencies to new versions ([7f1203a](https://github.com/retgits/akkasls-serverless-framework/commit/7f1203a71f970727e40cc6844ebb79c3d849428a))
+
 ### [0.1.1](https://github.com/retgits/akkasls-serverless-framework/compare/v0.1.0...v0.1.1) (2020-12-21)
 
 
