@@ -62,6 +62,9 @@ export const validationSchema = {
             },
             proxyHostPort: {
                 type: 'number'
+            },
+            environment: {
+                type: 'object',
             }
         }
     }

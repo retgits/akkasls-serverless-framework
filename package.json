@@ -45,6 +45,6 @@
     "typescript": "^4.1.3"
   },
   "dependencies": {
-    "@retgits/akkasls-nodewrapper": "^0.1.1"
+    "@retgits/akkasls-nodewrapper": "^0.1.5"
   }
 }

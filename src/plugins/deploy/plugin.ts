@@ -139,12 +139,21 @@ export class ASDeployPlugin extends BasePlugin {
 
         f.name = removeStageFromName(f.name, this._provider.stage);
 
+        const envvars : string[] = [];
+
+        if(f.environment) {
+            Object.keys(f.environment).forEach(function (key) {
+                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                envvars.push(`${key}="${f.environment![key]}"`);
+            });
+        }
+
         const tag = getDockerTag(f.tag);
         if (tag === config.defaults.tag) {
             this.warn(`${f.name} does not have a tag. Adding ${tag} for now, but this might cause issues...`);
         }
 
-        const res = await deployService(f.name, `${this.serverless.service.provider.docker.imageUser}/${f.name}:${tag}`, project, {dryrun: this._dryrun, silent: this._provider.quiet, configFile: this._provider.config, context: this._provider.context});
+        const res = await deployService(f.name, `${this.serverless.service.provider.docker.imageUser}/${f.name}:${tag}`, project, {vars: envvars}, {dryrun: this._dryrun, silent: this._provider.quiet, configFile: this._provider.config, context: this._provider.context});
         this.log(res.stdout);
     }
 

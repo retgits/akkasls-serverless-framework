@@ -55,6 +55,9 @@ functions:
     tag: '1.0.0'                    ## tag to add to the docker container
     skipBuild: true                 ## skips the build if set to true
     proxyHostPort: 9001
+    environment:                    ## environment variables that you want to set
+      hello: world
+      msg: the warehouse is stocked
 
 plugins:
   - '@retgits/akkasls-serverless-framework'

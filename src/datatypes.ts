@@ -41,6 +41,9 @@ export interface Function {
     tag: string;
     proxyHostPort: number;
     skipBuild: boolean;
+    environment?: {
+        [key: string]: any;
+    };
 }
 
 /**
