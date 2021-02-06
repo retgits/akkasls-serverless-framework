@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.3](https://github.com/retgits/akkasls-serverless-framework/compare/v0.1.2...v0.1.3) (2021-02-06)
+
+
+### Features
+
+* add command to get function logs ([ab284c9](https://github.com/retgits/akkasls-serverless-framework/commit/ab284c9a9af7dee96edf25ac751c76c1972d3805))
+* add env vars to service ([f971a50](https://github.com/retgits/akkasls-serverless-framework/commit/f971a508c2e99d648ca800bff04969aaa14ca09b))
+
 ### [0.1.2](https://github.com/retgits/akkasls-serverless-framework/compare/v0.1.1...v0.1.2) (2021-01-09)
 
 
