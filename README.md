@@ -67,10 +67,23 @@ plugins:
 
 ### Login
 
-The aslogin command logs users into Akka Serverless. You'll be provided with the opportunity to create a new account if one doesn't exist already.
+The `aslogin` command logs users into Akka Serverless. You'll be provided with the opportunity to create a new account if one doesn't exist already.
 
 ```bash
 serverless aslogin
+```
+
+
+### Logs
+
+The `aslogs` commands retrieves the logs for a specific function from Akka Serverless
+
+#### Usage
+
+Get the logs from the warehouse function
+
+```bash
+serverless aslogs -f warehouse
 ```
 
 ### Remove

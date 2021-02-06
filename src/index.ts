@@ -3,6 +3,7 @@ import { AkkaServerlessProvider } from './provider/provider';
 import { ASDeployPlugin } from './plugins/deploy/plugin';
 //invoke
 import { ASLocalPlugin } from './plugins/local/plugin';
+import { ASLogPlugin } from './plugins/log/plugin';
 import { ASLoginPlugin } from './plugins/login/plugin';
 import { ASPackagePlugin } from './plugins/package/plugin';
 import { ASRemovePlugin } from './plugins/remove/plugin';
@@ -17,6 +18,7 @@ export default class AkkaServerlessIndex {
     this._serverless.pluginManager.addPlugin(ASPackagePlugin);
     this._serverless.pluginManager.addPlugin(ASDeployPlugin);
     this._serverless.pluginManager.addPlugin(ASLocalPlugin);
+    this._serverless.pluginManager.addPlugin(ASLogPlugin);
   }
 }
 
