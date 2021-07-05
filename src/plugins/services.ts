@@ -1,14 +1,13 @@
 import Serverless from 'serverless';
 import { BasePlugin } from './base';
 import { Command } from '../utils/commandFactory';
-import { AkkaServerlessProviderConfig, AkkaServerlessService } from '../models/serverless';
+import { AkkaServerlessService } from '../models/serverless';
 import { getService } from '../utils/utils';
 import { join } from 'path';
 import { existsSync } from 'fs';
 import { config } from '../utils/config';
 
 export class AkkaServerlessServicesPlugin extends BasePlugin {
-    private _asProvider: AkkaServerlessProviderConfig;
     private _dryrun: boolean;
 
     public constructor(serverless: Serverless, options: Serverless.Options) {
@@ -126,8 +125,6 @@ export class AkkaServerlessServicesPlugin extends BasePlugin {
             this.config.services.push(service);
         }
 
-        this._asProvider = this.serverless.service.provider;
-
         // The conversion of type 'string' (which is the result from getOption) to type 'boolean' tricks 
         // the compiler in thinking there might be no overlap. That's why the expression is converted to 
         // 'unknown' first.
@@ -192,9 +189,9 @@ export class AkkaServerlessServicesPlugin extends BasePlugin {
         command.addParameter({ addNameToCommand: true, name: 'lifecycle', value: '' });
         command.addParameter({ addNameToCommand: true, name: 'project', value: this.config.project.project });
 
-        command.setSilent(this._asProvider.quiet);
-        command.setConfigFile(this._asProvider.config);
-        command.setContext(this._asProvider.context);
+        command.setSilent(this.provider.quiet);
+        command.setConfigFile(this.provider.config);
+        command.setContext(this.provider.context);
 
         if (this._dryrun) {
             this.logger.debug((await command.dryRun()).stdout);
@@ -226,9 +223,9 @@ export class AkkaServerlessServicesPlugin extends BasePlugin {
         command.addParameter({ addNameToCommand: false, name: 'name', value: service.name });
         command.addParameter({ addNameToCommand: true, name: 'project', value: this.config.project.project });
 
-        command.setSilent(this._asProvider.quiet);
-        command.setConfigFile(this._asProvider.config);
-        command.setContext(this._asProvider.context);
+        command.setSilent(this.provider.quiet);
+        command.setConfigFile(this.provider.config);
+        command.setContext(this.provider.context);
 
         if (this._dryrun) {
             this.logger.debug((await command.dryRun()).stdout);
@@ -295,9 +292,9 @@ export class AkkaServerlessServicesPlugin extends BasePlugin {
             command.addParameter({ addNameToCommand: true, name: 'env', value: vars.join(',') });
         }
 
-        command.setSilent(this._asProvider.quiet);
-        command.setConfigFile(this._asProvider.config);
-        command.setContext(this._asProvider.context);
+        command.setSilent(this.provider.quiet);
+        command.setConfigFile(this.provider.config);
+        command.setContext(this.provider.context);
 
         if (this._dryrun) {
             this.logger.debug((await command.dryRun()).stdout);

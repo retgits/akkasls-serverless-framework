@@ -1,12 +1,9 @@
 import Serverless from 'serverless';
 import { BasePlugin } from './base';
 import { Command } from '../utils/commandFactory';
-import { AkkaServerlessProviderConfig } from '../models/serverless';
 import { config } from '../utils/config';
 
 export class AkkaServerlessAuthicationPlugin extends BasePlugin {
-    private _asProvider: AkkaServerlessProviderConfig;
-
     public constructor(serverless: Serverless, options: Serverless.Options) {
         super(serverless, options);
 
@@ -25,16 +22,14 @@ export class AkkaServerlessAuthicationPlugin extends BasePlugin {
             'aslogin:aslogin': this._executeLogin.bind(this),
             'aslogout:aslogout': this._executeLogout.bind(this),
         };
-
-        this._asProvider = this.serverless.service.provider;
     }
 
     private async _executeLogin(): Promise<void> {
         const command = new Command(config.commands.auth.login);
 
-        command.setSilent(this._asProvider.quiet);
-        command.setConfigFile(this._asProvider.config);
-        command.setContext(this._asProvider.context);
+        command.setSilent(this.provider.quiet);
+        command.setConfigFile(this.provider.config);
+        command.setContext(this.provider.context);
 
         this.logger.info('Click on the URL below to authenticate...');
         await command.run();
@@ -43,9 +38,9 @@ export class AkkaServerlessAuthicationPlugin extends BasePlugin {
     private async _executeLogout(): Promise<void> {
         const command = new Command(config.commands.auth.logout);
 
-        command.setSilent(this._asProvider.quiet);
-        command.setConfigFile(this._asProvider.config);
-        command.setContext(this._asProvider.context);
+        command.setSilent(this.provider.quiet);
+        command.setConfigFile(this.provider.config);
+        command.setContext(this.provider.context);
 
         await command.run();
     }

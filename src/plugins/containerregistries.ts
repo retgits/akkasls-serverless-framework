@@ -1,12 +1,10 @@
 import Serverless from 'serverless';
 import { BasePlugin } from './base';
 import { Command } from '../utils/commandFactory';
-import { AkkaServerlessProviderConfig } from '../models/serverless';
 import { Credential } from '../models/cli';
 import { config } from '../utils/config';
 
 export class AkkaServerlessContainerRegistriesPlugin extends BasePlugin {
-    private _asProvider: AkkaServerlessProviderConfig;
     private _dryrun: boolean;
 
     public constructor(serverless: Serverless, options: Serverless.Options) {
@@ -42,9 +40,6 @@ export class AkkaServerlessContainerRegistriesPlugin extends BasePlugin {
             'set-registries:unset-registries': this._executeUnsetRegistries.bind(this),
             'set-registries:set-registries': this._executeSetRegistries.bind(this),
         };
-
-        this._asProvider = this.serverless.service.provider;
-
         // The conversion of type 'string' (which is the result from getOption) to type 'boolean' tricks 
         // the compiler in thinking there might be no overlap. That's why the expression is converted to 
         // 'unknown' first.
@@ -73,9 +68,9 @@ export class AkkaServerlessContainerRegistriesPlugin extends BasePlugin {
                 command.addParameter({addNameToCommand: true, name: 'docker-username', value: credential.username});
             }
 
-            command.setSilent(this._asProvider.quiet);
-            command.setConfigFile(this._asProvider.config);
-            command.setContext(this._asProvider.context);
+            command.setSilent(this.provider.quiet);
+            command.setConfigFile(this.provider.config);
+            command.setContext(this.provider.context);
 
             if (this._dryrun) {
                 this.logger.debug((await command.dryRun()).stdout);
@@ -96,9 +91,9 @@ export class AkkaServerlessContainerRegistriesPlugin extends BasePlugin {
 
             const command = new Command(config.commands.projects.docker.deleteDockerCredentials);
 
-            command.setSilent(this._asProvider.quiet);
-            command.setConfigFile(this._asProvider.config);
-            command.setContext(this._asProvider.context);
+            command.setSilent(this.provider.quiet);
+            command.setConfigFile(this.provider.config);
+            command.setContext(this.provider.context);
 
             const name = credential.name.split('/');
 
@@ -119,9 +114,9 @@ export class AkkaServerlessContainerRegistriesPlugin extends BasePlugin {
     private async _getRegistries(): Promise<Credential[]> {
         const command = new Command(config.commands.projects.docker.listDockerCredentials);
 
-        command.setSilent(this._asProvider.quiet);
-        command.setConfigFile(this._asProvider.config);
-        command.setContext(this._asProvider.context);
+        command.setSilent(this.provider.quiet);
+        command.setConfigFile(this.provider.config);
+        command.setContext(this.provider.context);
 
         command.addParameter({addNameToCommand: true, name: 'project', value: this.config.project.project});
 
