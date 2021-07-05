@@ -41,10 +41,10 @@ export class AkkaServerlessCliPlugin extends BasePlugin {
 
         switch (platform()) {
             case 'darwin':
-                this._downloadAkkaSlsUnix(platform(), exists.stdout);
+                this._downloadAkkaSlsUnix();
                 break;
             case 'linux':
-                this._downloadAkkaSlsUnix(platform(), exists.stdout);
+                this._downloadAkkaSlsUnix();
                 break;
             default:
                 this.error(`No automated support has been added to install the Akka Serverless CLI on ${platform()}`);
@@ -61,7 +61,7 @@ export class AkkaServerlessCliPlugin extends BasePlugin {
      * @param {string} type The type of OS (valid values are darwin and linux)
      * @param {string} [location] The location to move the CLI to if it already exists
      */
-    private _downloadAkkaSlsUnix(os: string, location?: string): void {
+    private _downloadAkkaSlsUnix(): void {
         const result = exec('curl -sL https://developer.lightbend.com/docs/akka-serverless/get.sh | bash', {
             env: process.env,
             async: false,
