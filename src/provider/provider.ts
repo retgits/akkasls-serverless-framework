@@ -1,6 +1,6 @@
 import Serverless from 'serverless';
 import { config } from '../config';
-import { validationSchema } from './schema';
+import { akkaserverlessSchema, providerSchema, servicesSchema } from './schema';
 
 export class AkkaServerlessProvider {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -15,7 +15,9 @@ export class AkkaServerlessProvider {
     this._serverless.setProvider(config.providerName, this);
 
     if (this._serverless.service.provider.name === config.providerName) {
-      serverless.configSchemaHandler.defineProvider(config.providerName, validationSchema);
+      serverless.configSchemaHandler.defineTopLevelProperty(config.providerName, akkaserverlessSchema);
+      serverless.configSchemaHandler.defineTopLevelProperty('services', servicesSchema);
+      serverless.configSchemaHandler.defineProvider(config.providerName, providerSchema);
     }
   }
 }
