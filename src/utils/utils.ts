@@ -1,8 +1,6 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+import { AkkaServerlessService } from '../models/serverless';
 
-import { config } from "../config";
-
-/* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+/* eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/explicit-module-boundary-types */
 export function getFromObject(object: any, key: string, defaultValue?: any): any {
     if (key in object) {
         return object[key];
@@ -10,10 +8,8 @@ export function getFromObject(object: any, key: string, defaultValue?: any): any
     return defaultValue;
 }
 
-export function removeStageFromName(name: string, stage: string): string {
-    return name.replace(`${stage}-`,'');
-}
-
-export function getDockerTag(tag = config.defaults.tag) {
-    return tag;
+export function getService(name: string, services: AkkaServerlessService[]): AkkaServerlessService | undefined {    
+    return services.find(service => {
+        return service.name === name;
+    });
 }

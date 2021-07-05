@@ -124,4 +124,5 @@ lib/**/*
 
 # Serverless directories
 .serverless
+.serverless_plugins
 serverless.yml

@@ -1,28 +1,25 @@
 {
 	"compilerOptions": {
-		"module": "commonjs",
-		"target": "es6",
-		"outDir": "lib",
-		"moduleResolution": "node",
-		"lib": [
+		"target": "es6", 						/* Specify ECMAScript target version. */
+		"module": "commonjs",					/* Specify module code generation. */
+		"declaration": true,					/* Generates corresponding '.d.ts' file. */
+		"outDir": "lib",						/* Redirect output structure to the directory. */
+		"rootDir": "src",						/* Specify the root directory of input files. */
+		"strict": false,						/* Enable all strict type-checking options. */
+		"strictNullChecks": true,				/* Enable strict null checks. */
+		"strictFunctionTypes": true,			/* Enable strict checking of function types. */
+		"strictPropertyInitialization": true,	/* Enable strict checking of property initialization in classes. */
+		"noImplicitThis": true,					/* Raise error on 'this' expressions with an implied 'any' type. */
+		"alwaysStrict": true,					/* Parse in strict mode and emit "use strict" for each source file. */
+		"noUnusedLocals": false,				/* Report errors on unused locals. */
+		"noUnusedParameters": true,				/* Report errors on unused parameters. */
+		"noImplicitReturns": true,				/* Report error when not all code paths in function return a value. */
+		"noFallthroughCasesInSwitch": true,		/* Report errors for fallthrough cases in switch statement. */
+		"moduleResolution": "node",				/* Specify module resolution strategy */
+		"esModuleInterop": true,				/* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. */
+		"resolveJsonModule": true,				/* Enables importing .json files. */
+		"lib": [								/* Specify a set of bundled library declaration files that describe the target runtime environment. */
 			"es6",
-		],
-		"sourceMap": true,
-		"rootDir": "src",
-		"alwaysStrict": true,
-		"noFallthroughCasesInSwitch": true,
-		"noImplicitReturns": true,
-		"strictFunctionTypes": true,
-		"strictNullChecks": true,
-		"noImplicitThis": true,
-		"declaration": true,
-		"strictPropertyInitialization": true,
-		"noUnusedParameters": true,
-		"esModuleInterop": true,
-		"resolveJsonModule": true,
-		"strict": false,
-		"noImplicitAny": false,
-		"strictBindCallApply": false,
-		"noUnusedLocals": false
+		]
 	}
 }
