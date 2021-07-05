@@ -1,7 +1,8 @@
 import Serverless from 'serverless';
 import { BasePlugin } from './base';
-import { Command, commands } from '../utils/commandFactory';
+import { Command } from '../utils/commandFactory';
 import { AkkaServerlessProviderConfig } from '../models/serverless';
+import { config } from '../utils/config';
 
 export class AkkaServerlessAuthicationPlugin extends BasePlugin {
     private _asProvider: AkkaServerlessProviderConfig;
@@ -29,7 +30,7 @@ export class AkkaServerlessAuthicationPlugin extends BasePlugin {
     }
 
     private async _executeLogin(): Promise<void> {
-        const command = new Command(commands.auth.login);
+        const command = new Command(config.commands.auth.login);
 
         command.setSilent(this._asProvider.quiet);
         command.setConfigFile(this._asProvider.config);
@@ -40,7 +41,7 @@ export class AkkaServerlessAuthicationPlugin extends BasePlugin {
     }
 
     private async _executeLogout(): Promise<void> {
-        const command = new Command(commands.auth.logout);
+        const command = new Command(config.commands.auth.logout);
 
         command.setSilent(this._asProvider.quiet);
         command.setConfigFile(this._asProvider.config);

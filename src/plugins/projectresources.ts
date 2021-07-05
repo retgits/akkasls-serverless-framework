@@ -1,7 +1,8 @@
 import Serverless from 'serverless';
 import { BasePlugin } from './base';
-import { Command, commands } from '../utils/commandFactory';
+import { Command } from '../utils/commandFactory';
 import { AkkaServerlessProviderConfig } from '../models/serverless';
+import { config } from '../utils/config';
 
 export class AkkaServerlessProjectResourcesPlugin extends BasePlugin {
     private _asProvider: AkkaServerlessProviderConfig;
@@ -99,7 +100,7 @@ export class AkkaServerlessProjectResourcesPlugin extends BasePlugin {
     }
 
     private async _executeSetBroker(): Promise<void> {
-        const command = new Command(commands.projects.resources.setBroker);
+        const command = new Command(config.commands.projects.resources.setBroker);
 
         command.setSilent(this._asProvider.quiet);
         command.setConfigFile(this._asProvider.config);
@@ -118,7 +119,7 @@ export class AkkaServerlessProjectResourcesPlugin extends BasePlugin {
     }
 
     private async _executeSetLogAggregator(): Promise<void> {
-        const command = new Command(commands.projects.resources.setLogAggregator);
+        const command = new Command(config.commands.projects.resources.setLogAggregator);
 
         command.setSilent(this._asProvider.quiet);
         command.setConfigFile(this._asProvider.config);
@@ -137,7 +138,7 @@ export class AkkaServerlessProjectResourcesPlugin extends BasePlugin {
     }
 
     private async _executeUnsetBroker(): Promise<void> {
-        const command = new Command(commands.projects.resources.unsetBroker);
+        const command = new Command(config.commands.projects.resources.unsetBroker);
 
         command.setSilent(this._asProvider.quiet);
         command.setConfigFile(this._asProvider.config);
@@ -154,7 +155,7 @@ export class AkkaServerlessProjectResourcesPlugin extends BasePlugin {
     }
 
     private async _executeUnsetLogAggregator(): Promise<void> {
-        const command = new Command(commands.projects.resources.unsetLogAggregator);
+        const command = new Command(config.commands.projects.resources.unsetLogAggregator);
 
         command.setSilent(this._asProvider.quiet);
         command.setConfigFile(this._asProvider.config);

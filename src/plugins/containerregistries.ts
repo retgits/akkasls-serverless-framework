@@ -1,8 +1,9 @@
 import Serverless from 'serverless';
 import { BasePlugin } from './base';
-import { Command, commands } from '../utils/commandFactory';
+import { Command } from '../utils/commandFactory';
 import { AkkaServerlessProviderConfig } from '../models/serverless';
 import { Credential } from '../models/cli';
+import { config } from '../utils/config';
 
 export class AkkaServerlessContainerRegistriesPlugin extends BasePlugin {
     private _asProvider: AkkaServerlessProviderConfig;
@@ -56,7 +57,7 @@ export class AkkaServerlessContainerRegistriesPlugin extends BasePlugin {
         for (let index = 0; index < credentials.length; index++) {
             const credential = credentials[index];
 
-            const command = new Command(commands.projects.docker.addDockerCredentials);
+            const command = new Command(config.commands.projects.docker.addDockerCredentials);
             command.addParameter({addNameToCommand: true, name: 'project', value: this.config.project.project});
             command.addParameter({addNameToCommand: true, name: 'docker-server', value: credential.registryUrl});
 
@@ -93,7 +94,7 @@ export class AkkaServerlessContainerRegistriesPlugin extends BasePlugin {
         for (let index = 0; index < credentials.length; index++) {
             const credential = credentials[index];
 
-            const command = new Command(commands.projects.docker.deleteDockerCredentials);
+            const command = new Command(config.commands.projects.docker.deleteDockerCredentials);
 
             command.setSilent(this._asProvider.quiet);
             command.setConfigFile(this._asProvider.config);
@@ -116,7 +117,7 @@ export class AkkaServerlessContainerRegistriesPlugin extends BasePlugin {
     }
 
     private async _getRegistries(): Promise<Credential[]> {
-        const command = new Command(commands.projects.docker.listDockerCredentials);
+        const command = new Command(config.commands.projects.docker.listDockerCredentials);
 
         command.setSilent(this._asProvider.quiet);
         command.setConfigFile(this._asProvider.config);

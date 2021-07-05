@@ -1,10 +1,11 @@
 import Serverless from 'serverless';
 import { BasePlugin } from './base';
-import { Command, commands } from '../utils/commandFactory';
+import { Command } from '../utils/commandFactory';
 import { AkkaServerlessProviderConfig, AkkaServerlessService } from '../models/serverless';
 import { getService } from '../utils/utils';
 import { join } from 'path';
 import { existsSync } from 'fs';
+import { config } from '../utils/config';
 
 export class AkkaServerlessServicesPlugin extends BasePlugin {
     private _asProvider: AkkaServerlessProviderConfig;
@@ -161,7 +162,7 @@ export class AkkaServerlessServicesPlugin extends BasePlugin {
                 `docker rm ${service.name}`,
                 `docker rm ${service.name}-proxy`,
                 `docker network rm akkasls-${service.name}`
-            ]
+            ];
         } else {
             this.error(`Unknown command ${this.options.service.command}, choose either 'start' or 'stop'`);
             return;
@@ -185,7 +186,7 @@ export class AkkaServerlessServicesPlugin extends BasePlugin {
             return;
         }
 
-        const command = new Command(commands.projects.services.logs);
+        const command = new Command(config.commands.projects.services.logs);
         command.addParameter({ addNameToCommand: false, name: 'name', value: service.name });
         command.addParameter({ addNameToCommand: true, name: 'instance', value: '' });
         command.addParameter({ addNameToCommand: true, name: 'lifecycle', value: '' });
@@ -221,7 +222,7 @@ export class AkkaServerlessServicesPlugin extends BasePlugin {
     }
 
     private async _removeService(service: AkkaServerlessService): Promise<void> {
-        const command = new Command(commands.projects.services.delete);
+        const command = new Command(config.commands.projects.services.delete);
         command.addParameter({ addNameToCommand: false, name: 'name', value: service.name });
         command.addParameter({ addNameToCommand: true, name: 'project', value: this.config.project.project });
 
@@ -279,7 +280,7 @@ export class AkkaServerlessServicesPlugin extends BasePlugin {
     }
 
     private async _deployContainer(service: AkkaServerlessService, expose: boolean): Promise<void> {
-        const command = new Command(commands.projects.services.deploy);
+        const command = new Command(config.commands.projects.services.deploy);
         command.addParameter({ addNameToCommand: false, name: 'name', value: service.name });
         command.addParameter({ addNameToCommand: false, name: 'image', value: service.imagename });
         command.addParameter({ addNameToCommand: true, name: 'project', value: this.config.project.project });
@@ -305,7 +306,7 @@ export class AkkaServerlessServicesPlugin extends BasePlugin {
         }
 
         if (expose) {
-            const command = new Command(commands.projects.services.expose);
+            const command = new Command(config.commands.projects.services.expose);
             command.addParameter({ addNameToCommand: false, name: 'name', value: service.name });
             command.addParameter({ addNameToCommand: true, name: 'enable-cors', value: '' });
             command.addParameter({ addNameToCommand: true, name: 'project', value: this.config.project.project });
