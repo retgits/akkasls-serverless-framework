@@ -1,8 +1,7 @@
 import Serverless from 'serverless';
 import { BasePlugin } from './base';
-import { platform, homedir } from 'os';
-import { join } from 'path';
-import { exec, which, ShellString } from 'shelljs';
+import { platform } from 'os';
+import { exec, which } from 'shelljs';
 
 export class AkkaServerlessCliPlugin extends BasePlugin {
     public constructor(serverless: Serverless, options: Serverless.Options) {
