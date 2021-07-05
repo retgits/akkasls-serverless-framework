@@ -12,7 +12,7 @@
     "compile": "rm -rf ./lib && tsc",
     "lint": "eslint src/**/*.ts",
     "build": "npm run compile",
-    "release": "standard-version && git push --follow-tags origin main && npm publish --access public",
+    "release": "npm run compile && standard-version && git push --follow-tags origin main && npm publish --access public",
     "local": "npm run compile && rm -rf .serverless_plugins && mv lib .serverless_plugins"
   },
   "repository": {
