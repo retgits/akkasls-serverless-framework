@@ -1,6 +1,6 @@
 {
   "name": "@retgits/akkasls-serverless-framework",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "description": "Provider plugin for the Serverless Framework v2.x which adds support for Akka Serverless.",
   "license": "MIT",
   "main": "./lib/index.js",
