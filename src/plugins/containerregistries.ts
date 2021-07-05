@@ -1,10 +1,10 @@
 import Serverless from 'serverless';
-import { BasePlugin } from '../basePlugin';
-import { Command, commands } from '../../utils/commandFactory';
-import { AkkaServerlessProviderConfig } from '../../models/serverless';
-import { Credential } from '../../models/cli';
+import { BasePlugin } from './base';
+import { Command, commands } from '../utils/commandFactory';
+import { AkkaServerlessProviderConfig } from '../models/serverless';
+import { Credential } from '../models/cli';
 
-export class AkkaServerlessDockerPlugin extends BasePlugin {
+export class AkkaServerlessContainerRegistriesPlugin extends BasePlugin {
     private _asProvider: AkkaServerlessProviderConfig;
     private _dryrun: boolean;
 

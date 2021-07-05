@@ -1,5 +1,5 @@
 import Serverless from 'serverless';
-import { config } from '../config';
+import { config } from '../utils/config';
 import { akkaserverlessSchema, providerSchema, servicesSchema } from './schema';
 
 export class AkkaServerlessProvider {

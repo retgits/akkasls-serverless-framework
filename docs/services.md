@@ -20,7 +20,7 @@ serverless package --service warehouse --push
 
 ### Options
 
-* `--service` Name of function to package
+* `--service` Name of service to package
 * `--push` Push packaged container(s) to the container registry
 
 ## Deploy
@@ -49,7 +49,7 @@ serverless asdeploy --service warehouse --expose
 
 ### Options
 
-* `--service` Name of function to package
+* `--service` Name of service to package
 * `--expose` When set, adds an HTTP endpoint to your service
 * `--dryrun` When set, only prints the commands without execution.
 

@@ -1,7 +1,7 @@
 import Serverless from 'serverless';
-import { BasePlugin } from '../basePlugin';
-import { Command, commands } from '../../utils/commandFactory';
-import { AkkaServerlessProviderConfig } from '../../models/serverless';
+import { BasePlugin } from './base';
+import { Command, commands } from '../utils/commandFactory';
+import { AkkaServerlessProviderConfig } from '../models/serverless';
 
 export class AkkaServerlessProjectResourcesPlugin extends BasePlugin {
     private _asProvider: AkkaServerlessProviderConfig;

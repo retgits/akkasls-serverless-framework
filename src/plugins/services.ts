@@ -1,8 +1,8 @@
 import Serverless from 'serverless';
-import { BasePlugin } from '../basePlugin';
-import { Command, commands } from '../../utils/commandFactory';
-import { AkkaServerlessProviderConfig, AkkaServerlessService } from '../../models/serverless';
-import { getService } from '../../utils/utils';
+import { BasePlugin } from './base';
+import { Command, commands } from '../utils/commandFactory';
+import { AkkaServerlessProviderConfig, AkkaServerlessService } from '../models/serverless';
+import { getService } from '../utils/utils';
 import { join } from 'path';
 import { existsSync } from 'fs';
 

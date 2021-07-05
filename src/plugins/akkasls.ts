@@ -1,5 +1,5 @@
 import Serverless from 'serverless';
-import { BasePlugin } from '../basePlugin';
+import { BasePlugin } from './base';
 import { platform, homedir } from 'os';
 import { join } from 'path';
 import { exec, which, ShellString } from 'shelljs';

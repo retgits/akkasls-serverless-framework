@@ -1,9 +1,9 @@
 import Serverless from 'serverless';
-import { BasePlugin } from '../basePlugin';
-import { Command, commands } from '../../utils/commandFactory';
-import { AkkaServerlessProviderConfig } from '../../models/serverless';
+import { BasePlugin } from './base';
+import { Command, commands } from '../utils/commandFactory';
+import { AkkaServerlessProviderConfig } from '../models/serverless';
 
-export class AkkaServerlessAuthPlugin extends BasePlugin {
+export class AkkaServerlessAuthicationPlugin extends BasePlugin {
     private _asProvider: AkkaServerlessProviderConfig;
 
     public constructor(serverless: Serverless, options: Serverless.Options) {
