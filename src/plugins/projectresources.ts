@@ -98,9 +98,9 @@ export class AkkaServerlessProjectResourcesPlugin extends BasePlugin {
     private async _executeSetBroker(): Promise<void> {
         const command = new Command(config.commands.projects.resources.setBroker);
 
-        command.setSilent(this.provider.quiet);
-        command.setConfigFile(this.provider.config);
-        command.setContext(this.provider.context);
+        command.setSilent(this.asProvider.quiet);
+        command.setConfigFile(this.asProvider.config);
+        command.setContext(this.asProvider.context);
 
         command.addParameter({addNameToCommand: true, name: 'broker-service', value: 'gcp-pubsub'});
         command.addParameter({addNameToCommand: true, name: 'gcp-key-file', value: this.config.project.broker.keyFile});
@@ -117,9 +117,9 @@ export class AkkaServerlessProjectResourcesPlugin extends BasePlugin {
     private async _executeSetLogAggregator(): Promise<void> {
         const command = new Command(config.commands.projects.resources.setLogAggregator);
 
-        command.setSilent(this.provider.quiet);
-        command.setConfigFile(this.provider.config);
-        command.setContext(this.provider.context);
+        command.setSilent(this.asProvider.quiet);
+        command.setConfigFile(this.asProvider.config);
+        command.setContext(this.asProvider.context);
 
         command.addParameter({addNameToCommand: true, name: 'log-service', value: 'stackdriver'});
         command.addParameter({addNameToCommand: true, name: 'gcp-key-file', value: this.config.project.logAggregator.keyFile});
@@ -136,9 +136,9 @@ export class AkkaServerlessProjectResourcesPlugin extends BasePlugin {
     private async _executeUnsetBroker(): Promise<void> {
         const command = new Command(config.commands.projects.resources.unsetBroker);
 
-        command.setSilent(this.provider.quiet);
-        command.setConfigFile(this.provider.config);
-        command.setContext(this.provider.context);
+        command.setSilent(this.asProvider.quiet);
+        command.setConfigFile(this.asProvider.config);
+        command.setContext(this.asProvider.context);
 
         command.addParameter({addNameToCommand: true, name: 'project', value: this.config.project.project});
 
@@ -153,9 +153,9 @@ export class AkkaServerlessProjectResourcesPlugin extends BasePlugin {
     private async _executeUnsetLogAggregator(): Promise<void> {
         const command = new Command(config.commands.projects.resources.unsetLogAggregator);
 
-        command.setSilent(this.provider.quiet);
-        command.setConfigFile(this.provider.config);
-        command.setContext(this.provider.context);
+        command.setSilent(this.asProvider.quiet);
+        command.setConfigFile(this.asProvider.config);
+        command.setContext(this.asProvider.context);
 
         command.addParameter({addNameToCommand: true, name: 'project', value: this.config.project.project});
 

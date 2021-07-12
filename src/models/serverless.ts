@@ -17,7 +17,7 @@ export interface ServerlessHooks {
  */
 export interface AkkaServerlessConfig {
     service: string;
-    provider: AkkaServerlessProviderConfig;
+    asProvider: AkkaServerlessProviderConfig;
     project: AkkaServerlessProjectConfig;
     plugins: string[];
     services: AkkaServerlessService[];

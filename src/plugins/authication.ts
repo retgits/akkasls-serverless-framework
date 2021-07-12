@@ -27,9 +27,9 @@ export class AkkaServerlessAuthicationPlugin extends BasePlugin {
     private async _executeLogin(): Promise<void> {
         const command = new Command(config.commands.auth.login);
 
-        command.setSilent(this.provider.quiet);
-        command.setConfigFile(this.provider.config);
-        command.setContext(this.provider.context);
+        command.setSilent(this.asProvider.quiet);
+        command.setConfigFile(this.asProvider.config);
+        command.setContext(this.asProvider.context);
 
         this.logger.info('Click on the URL below to authenticate...');
         await command.run();
@@ -38,9 +38,9 @@ export class AkkaServerlessAuthicationPlugin extends BasePlugin {
     private async _executeLogout(): Promise<void> {
         const command = new Command(config.commands.auth.logout);
 
-        command.setSilent(this.provider.quiet);
-        command.setConfigFile(this.provider.config);
-        command.setContext(this.provider.context);
+        command.setSilent(this.asProvider.quiet);
+        command.setConfigFile(this.asProvider.config);
+        command.setContext(this.asProvider.context);
 
         await command.run();
     }

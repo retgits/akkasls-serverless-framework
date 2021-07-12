@@ -16,7 +16,7 @@ export abstract class BasePlugin<TOptions = Serverless.Options> {
     protected config: AkkaServerlessConfig;
     protected logger: Logger;
     protected commands: ServerlessCommands;
-    protected provider: AkkaServerlessProviderConfig;
+    protected asProvider: AkkaServerlessProviderConfig;
 
     /**
      * Creates an instance of BasePlugin.
@@ -31,7 +31,7 @@ export abstract class BasePlugin<TOptions = Serverless.Options> {
         this.config = serverless.service as any;
         this.config.project = serverless.configurationInput.akkaserverless as any;
         this.logger = new Logger(serverless, options as any);
-        this.provider = serverless.service.provider;
+        this.asProvider = serverless.service.provider;
     }
 
     /**

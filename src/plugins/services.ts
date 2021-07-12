@@ -189,9 +189,9 @@ export class AkkaServerlessServicesPlugin extends BasePlugin {
         command.addParameter({ addNameToCommand: true, name: 'lifecycle', value: '' });
         command.addParameter({ addNameToCommand: true, name: 'project', value: this.config.project.project });
 
-        command.setSilent(this.provider.quiet);
-        command.setConfigFile(this.provider.config);
-        command.setContext(this.provider.context);
+        command.setSilent(this.asProvider.quiet);
+        command.setConfigFile(this.asProvider.config);
+        command.setContext(this.asProvider.context);
 
         if (this._dryrun) {
             this.logger.debug((await command.dryRun()).stdout);
@@ -223,9 +223,9 @@ export class AkkaServerlessServicesPlugin extends BasePlugin {
         command.addParameter({ addNameToCommand: false, name: 'name', value: service.name });
         command.addParameter({ addNameToCommand: true, name: 'project', value: this.config.project.project });
 
-        command.setSilent(this.provider.quiet);
-        command.setConfigFile(this.provider.config);
-        command.setContext(this.provider.context);
+        command.setSilent(this.asProvider.quiet);
+        command.setConfigFile(this.asProvider.config);
+        command.setContext(this.asProvider.context);
 
         if (this._dryrun) {
             this.logger.debug((await command.dryRun()).stdout);
@@ -292,9 +292,9 @@ export class AkkaServerlessServicesPlugin extends BasePlugin {
             command.addParameter({ addNameToCommand: true, name: 'env', value: vars.join(',') });
         }
 
-        command.setSilent(this.provider.quiet);
-        command.setConfigFile(this.provider.config);
-        command.setContext(this.provider.context);
+        command.setSilent(this.asProvider.quiet);
+        command.setConfigFile(this.asProvider.config);
+        command.setContext(this.asProvider.context);
 
         if (this._dryrun) {
             this.logger.debug((await command.dryRun()).stdout);

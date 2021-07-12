@@ -68,9 +68,9 @@ export class AkkaServerlessContainerRegistriesPlugin extends BasePlugin {
                 command.addParameter({addNameToCommand: true, name: 'docker-username', value: credential.username});
             }
 
-            command.setSilent(this.provider.quiet);
-            command.setConfigFile(this.provider.config);
-            command.setContext(this.provider.context);
+            command.setSilent(this.asProvider.quiet);
+            command.setConfigFile(this.asProvider.config);
+            command.setContext(this.asProvider.context);
 
             if (this._dryrun) {
                 this.logger.debug((await command.dryRun()).stdout);
@@ -91,9 +91,9 @@ export class AkkaServerlessContainerRegistriesPlugin extends BasePlugin {
 
             const command = new Command(config.commands.projects.docker.deleteDockerCredentials);
 
-            command.setSilent(this.provider.quiet);
-            command.setConfigFile(this.provider.config);
-            command.setContext(this.provider.context);
+            command.setSilent(this.asProvider.quiet);
+            command.setConfigFile(this.asProvider.config);
+            command.setContext(this.asProvider.context);
 
             const name = credential.name.split('/');
 
@@ -114,9 +114,9 @@ export class AkkaServerlessContainerRegistriesPlugin extends BasePlugin {
     private async _getRegistries(): Promise<Credential[]> {
         const command = new Command(config.commands.projects.docker.listDockerCredentials);
 
-        command.setSilent(this.provider.quiet);
-        command.setConfigFile(this.provider.config);
-        command.setContext(this.provider.context);
+        command.setSilent(this.asProvider.quiet);
+        command.setConfigFile(this.asProvider.config);
+        command.setContext(this.asProvider.context);
 
         command.addParameter({addNameToCommand: true, name: 'project', value: this.config.project.project});
 
