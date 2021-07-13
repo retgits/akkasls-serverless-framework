@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.2](https://github.com/retgits/akkasls-serverless-framework/compare/v0.2.1...v0.2.2) (2021-07-13)
+
+
+### Bug Fixes
+
+* add support for docker buildkit ([5599f3c](https://github.com/retgits/akkasls-serverless-framework/commit/5599f3c88f817b15d88566bc67924c180395e784))
+
 ### [0.2.1](https://github.com/retgits/akkasls-serverless-framework/compare/v0.2.0...v0.2.1) (2021-07-12)
 
 
