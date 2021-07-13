@@ -6,6 +6,7 @@ import { getService } from '../utils/utils';
 import { join } from 'path';
 import { existsSync } from 'fs';
 import { config } from '../utils/config';
+import { platform, arch } from 'os';
 
 export class AkkaServerlessServicesPlugin extends BasePlugin {
     private _dryrun: boolean;
@@ -328,7 +329,15 @@ export class AkkaServerlessServicesPlugin extends BasePlugin {
             if (service.tag) {
                 imagename += `:${service.tag}`;
             }
-            const command = new Command(`docker build . -f ${service.dockerfile} -t ${imagename}`, join(process.cwd(), service.folder));
+
+            let cmdString = `docker build . -f ${service.dockerfile} -t ${imagename}`;
+
+            if(platform() === 'darwin' && arch() === 'arm64') {
+                this.warn('Running aspackage on Apple M1 machines leverages Docker BuildKit');
+                cmdString = `docker buildx build --platform linux/amd64 . -f ${service.dockerfile} -t ${imagename}`;
+            }
+
+            const command = new Command(cmdString, join(process.cwd(), service.folder));
             const result = await command.run();
             this.info(result.stdout);
             if (result.stderr) {
